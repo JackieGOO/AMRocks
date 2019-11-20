@@ -4,8 +4,8 @@ Scripts are provided as is.
 
 Scripts included:
 1. DNAanalysis.py - searches for a provided list of terms through annotated fasta files of genomes and metagenomes and produces a CSV of counts
-PULLED FROM: https://github.com/JackieGOO/dna-profiling. First published in: Goordial, FEMS Microbiology Ecology, 2016. 
+PULLED FROM: https://github.com/JackieGOO/dna-profiling. V1.0 published in: Goordial, FEMS Microbiology Ecology, 2016. 
 
 
 2. KEGG-decoder- Script by Ben Tully ( Graham et al., 2018). Produces a heat map of kegg anotated proteins. 
-3. Mothur scripts - as used in the paper 
+
