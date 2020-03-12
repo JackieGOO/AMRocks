@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+#Run as python kegg_decoder.py fileinput fileoutput
 '''
 This is a modified version of KEGG decoder as pu;;ed from Ben Tully's Github (Graham et al., 2018).
 This is the version of the script that was run for the Atlantis Massif sequencing paper. 
@@ -1095,8 +1096,10 @@ def competence(ko_match):
 def anaplerotic(ko_match):
 	out_data = {'Glyoxylate shunt':0, 'Anaplerotic genes': 0}
 #isocitrate lyase + malate synthase
-	if 'K01637' in ko_match and 'K01638' in ko_match:
-		out_data['Glyoxylate shunt'] = 1
+	if 'K01637' in ko_match:
+		out_data['Glyoxylate shunt'] += 0.5
+	if 'K01638' in ko_match:
+		out_data['Glyoxylate shunt'] += 0.5
 #malate dehydrogenase (oxaloacetate-decarboxylating) (NADP+)
 	if 'K00029' in ko_match:
 		out_data['Anaplerotic genes'] += 0.25
@@ -1306,12 +1309,17 @@ for k in genome_data:
 	out_file.write(tab_string+"\n")
 out_file.close()
 
+#I look at output file and maniuplate colums I would like to keep in
+#final file is kegg_decod_outALTforpaper.txt in this example
+
 #%matplotlib inline
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 
 import pandas as pd
 
-file_in = open(filehandle, "r")
+file_in = open("kegg_decod_outALTforpaper.txt")
 genome = pd.read_table(file_in, index_col=0)
 import seaborn as sns
 sns.set(font_scale=1.2)
@@ -1325,4 +1333,4 @@ plt.yticks(rotation=0)
 fig = ax.get_figure()
 # specify dimensions and save
 fig.set_size_inches(35, 35)
-fig.savefig("function_heatmap.svg")
+fig.savefig("function_heatmap_glyalt.svg")
